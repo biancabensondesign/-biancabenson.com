@@ -4,7 +4,7 @@ Source for [biancabenson.com](https://biancabenson.com), a lightweight personal 
 
 ## Approach
 
-The site is intentionally built with semantic HTML, CSS, and a small amount of vanilla JavaScript. Its visual direction is typography-led, with a scroll-based introduction and an animated aurora background.
+The site is intentionally built with semantic HTML and CSS, and no JavaScript. Its visual direction is typography-led, with an animated aurora background and native HTML disclosure widgets for progressive detail.
 
 This project does not use Vue, React, or another framework by design. The site is small and predominantly static; native browser features already meet its needs. Adding a framework would introduce dependencies, runtime overhead, build tooling, and maintenance without a clear user or developer benefit.
 
@@ -12,32 +12,30 @@ The implementation reflects a design-led practice supported by full-stack web de
 
 ## Technology
 
-- Semantic HTML5
-- Modern CSS, including scroll snap, responsive viewport units, and reduced-motion support
-- Vanilla JavaScript for active-section colour changes and mouse-wheel navigation
-- Locally hosted production typeface, not distributed with this repository
+- Semantic HTML5, including native `<details>` disclosure widgets for expandable sections
+- Modern CSS, including custom properties, `clamp()` fluid type, responsive viewport units, and reduced-motion support
+- No JavaScript
+- Fraunces (variable) loaded from Google Fonts for display headings, with a system font stack for body text
+- Each page is self-contained: its CSS is inlined, with no external stylesheet or script files
 - No framework or build step required
 
 ## Accessibility and performance
 
-- Native landmarks, headings, links, and buttons where appropriate
-- Visible keyboard focus treatment and touch-friendly contact links
+- Native landmarks, headings, links, and disclosure widgets where appropriate
+- Visible keyboard focus treatment and touch-friendly controls
 - `prefers-reduced-motion` support for the animated background
-- Responsive layout using fluid sizing and dynamic viewport-height fallbacks
-- `font-display: swap` for the locally hosted production typeface
-- Minimal JavaScript and no third-party runtime scripts
+- Responsive layout using fluid sizing (`clamp()`) and flexible units
+- `display=swap` on the web font so text renders immediately in a fallback
+- No JavaScript and no third-party runtime scripts
 
 ## Project structure
 
 ```text
-├── index.html          # Homepage
-├── 404.html            # Fallback page
-├── css/
-│   ├── normalize.css   # Browser baseline
-│   └── style.css       # Site styles and animation
-├── js/
-│   └── pages.js        # Homepage interaction
-├── favicon.* / icon.png
+├── index.html            # Homepage / portfolio
+├── extra-info.html        # Additional info page (Dutch)
+├── extra-info-en.html     # Additional info page (English)
+├── 404.html               # Fallback page
+├── favicon.ico / favicon.png / icon.png
 ├── site.webmanifest
 └── robots.txt
 ```
@@ -52,7 +50,7 @@ python3 -m http.server 8000
 
 Then open [http://localhost:8000](http://localhost:8000).
 
-The production site uses a locally hosted typeface whose files are intentionally excluded from this repository. Local previews will use the CSS fallback font unless you provide an appropriately licensed replacement.
+Display headings load Fraunces from Google Fonts, so previewing with an internet connection shows the intended typography. Body text uses the system font stack and needs nothing external.
 
 ## Deployment
 

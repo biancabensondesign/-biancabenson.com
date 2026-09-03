@@ -8,12 +8,6 @@ Portions of the retained project scaffolding derive from HTML5 Boilerplate.
 
 Copyright (c) HTML5 Boilerplate
 
-## Normalize.css
-
-[`css/normalize.css`](css/normalize.css) is Normalize.css v8.0.1.
-
-Copyright © Nicolas Gallagher and Jonathan Neal
-
 ## MIT License
 
 The MIT License below applies to the third-party components identified above.

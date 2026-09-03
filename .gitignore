@@ -14,20 +14,5 @@ dist/
 
 /fonts/
 /.htaccess
-
 /extra-info.html
 /extra-info-en.html
-/css/extra-info.css
-/css/main.css
-/doc/
-/img/
-/js/main.js
-/js/plugins.js
-/js/vendor/
-/animated_favicon1.gif
-/browserconfig.xml
-/humans.txt
-/package.json
-/package-lock.json
-/tile.png
-/tile-wide.png

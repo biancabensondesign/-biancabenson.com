@@ -1,85 +1,472 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <title>Bianca Benson — Digital Creative</title>
-  <meta name="description" content="Bianca Benson is a digital creative in the Netherlands, combining design, frontend development, and thoughtful digital solutions.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bianca Benson — Digital Creative & Frontend Developer</title>
+<meta name="description" content="Bianca Benson is a digital creative and frontend developer in the Netherlands, blending design sensibility with hands-on frontend work.">
+<meta name="theme-color" content="#0B1220">
 
-  <link rel="canonical" href="https://biancabenson.com/">
-  <meta property="og:title" content="Bianca Benson — Digital Creative">
-  <meta property="og:description" content="Digital creative in the Netherlands, combining design, frontend development, and thoughtful digital solutions.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://biancabenson.com/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Bianca Benson — Digital Creative">
-  <meta name="twitter:description" content="Digital creative in the Netherlands, combining design, frontend development, and thoughtful digital solutions.">
+<link rel="canonical" href="https://biancabenson.com/">
 
-  <link rel="manifest" href="site.webmanifest">
-  <link rel="apple-touch-icon" href="favicon.png">
-  <link rel="icon" type="image/png" href="favicon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="apple-touch-icon" href="favicon.png">
+<link rel="icon" type="image/png" href="favicon.png">
 
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/style.css?v=7">
+<meta property="og:title" content="Bianca Benson — Digital Creative & Frontend Developer">
+<meta property="og:description" content="Bianca Benson is a digital creative and frontend developer in the Netherlands, blending design sensibility with hands-on frontend work.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://biancabenson.com/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Bianca Benson — Digital Creative & Frontend Developer">
+<meta name="twitter:description" content="Bianca Benson is a digital creative and frontend developer in the Netherlands, blending design sensibility with hands-on frontend work.">
 
-  <meta name="theme-color" content="#edc7a9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:        #0B1220;
+    --night-soft:   #141E33;
+    --aurora-green: #5FE0B3;
+    --aurora-pink:  #E893C0;
+    --aurora-violet:#8B7FD1;
+    --accent:         #4A5FD9;
+    --accent-deep:    #333F9E;
+    --paper:        #F4F6FB;
+    --card:         #FFFFFF;
+    --ink:          #1B2230;
+    --ink-soft:     #5C6373;
+    --line:         #E1E5F0;
+    --tag-bg:       #E9EBF9;
+    --focus:        #A8642B;
+    --radius-card:  18px;
+    --radius-tag:   999px;
+    --shadow: 0 1px 2px rgba(35,32,28,.05), 0 10px 28px -14px rgba(35,25,15,.22);
+    --maxw: 760px;
+    font-size:17px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+
+  body{
+    margin:0;
+    font-family:-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--accent-deep);}
+  a:focus-visible, button:focus-visible, summary:focus-visible, label:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:2px;
+    border-radius:4px;
+  }
+
+  h1,h2,h3{font-family:"Fraunces",Georgia,serif; font-weight:600; font-optical-sizing:auto;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
+
+  /* ---------------- NAV ---------------- */
+  .topbar{
+    position:sticky; top:0; z-index:20;
+    backdrop-filter:saturate(160%) blur(12px);
+    background:rgba(250,246,241,.78);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar-inner{
+    max-width:var(--maxw); margin:0 auto; padding:14px 20px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .brand{font-family:"Fraunces",Georgia,serif; font-weight:600; font-size:1.05rem; color:var(--ink); text-decoration:none;}
+  nav.links{display:flex; gap:4px;}
+  nav.links a{
+    font-size:.88rem; font-weight:600; text-decoration:none; color:var(--ink-soft);
+    padding:8px 12px; border-radius:var(--radius-tag);
+  }
+  nav.links a:hover, nav.links a:focus-visible{ background:var(--tag-bg); color:var(--accent-deep); }
+
+  /* Mobile nav — CSS-only checkbox toggle, no JS */
+  #nav-toggle{display:none;}
+  .nav-btn{
+    display:none;
+    width:38px; height:38px; border-radius:10px;
+    align-items:center; justify-content:center;
+    background:var(--tag-bg); cursor:pointer;
+  }
+  .nav-btn span, .nav-btn::before, .nav-btn::after{
+    content:""; display:block; width:16px; height:2px; background:var(--ink);
+    position:relative;
+  }
+  .nav-btn::before{ position:absolute; transform:translateY(-6px); }
+  .nav-btn::after{ position:absolute; transform:translateY(6px); }
+
+  @media (max-width:560px){
+    nav.links{
+      display:none;
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:2px;
+      background:var(--card); border-bottom:1px solid var(--line);
+      padding:10px 20px 16px;
+    }
+    #nav-toggle:checked ~ nav.links{ display:flex; }
+    .nav-btn{ display:flex; }
+    .topbar{ position:sticky; }
+    .topbar-inner{ position:relative; }
+  }
+
+  /* ---------------- HERO / AURORA ---------------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    background:var(--night);
+    color:#EDEBF5;
+    padding:76px 0 84px;
+  }
+  .hero .aurora{ position:absolute; inset:0; z-index:0; }
+  .hero .aurora span{
+    position:absolute; border-radius:50%; filter:blur(70px); mix-blend-mode:screen; opacity:.55;
+  }
+  .hero .aurora .a1{
+    width:60vw; height:60vw; max-width:640px; max-height:640px;
+    top:-20vw; left:-10vw;
+    background:radial-gradient(circle, var(--aurora-green), transparent 70%);
+    animation:driftA 24s ease-in-out infinite alternate;
+  }
+  .hero .aurora .a2{
+    width:55vw; height:55vw; max-width:600px; max-height:600px;
+    top:-14vw; right:-16vw;
+    background:radial-gradient(circle, var(--aurora-violet), transparent 70%);
+    animation:driftB 30s ease-in-out infinite alternate;
+  }
+  .hero .aurora .a3{
+    width:50vw; height:50vw; max-width:560px; max-height:560px;
+    bottom:-26vw; left:20vw;
+    background:radial-gradient(circle, var(--aurora-pink), transparent 72%);
+    opacity:.4;
+    animation:driftC 34s ease-in-out infinite alternate;
+  }
+  @keyframes driftA{ from{transform:translate(0,0) scale(1);} to{transform:translate(5vw,4vw) scale(1.1);} }
+  @keyframes driftB{ from{transform:translate(0,0) scale(1);} to{transform:translate(-6vw,5vw) scale(1.08);} }
+  @keyframes driftC{ from{transform:translate(0,0) scale(1);} to{transform:translate(4vw,-4vw) scale(1.14);} }
+
+  .hero-inner{ position:relative; z-index:1; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:.82rem; font-weight:600; letter-spacing:.02em;
+    color:var(--aurora-green); margin-bottom:14px;
+  }
+  .eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--aurora-green); }
+  .hero h1{
+    font-size:clamp(2.3rem, 7vw, 3.2rem);
+    line-height:1.08;
+    margin:0 0 20px;
+    max-width:14ch;
+    font-variation-settings:"SOFT" 30, "WONK" 1;
+  }
+  .hero p.lede{
+    font-size:1.08rem;
+    color:#C9C6D9;
+    max-width:52ch;
+    margin:0 0 28px;
+  }
+  .hero-badges{ display:flex; flex-wrap:wrap; gap:8px; }
+  .hero-badges .badge{
+    background:rgba(255,255,255,.08);
+    color:#EDEBF5;
+    border:1px solid rgba(255,255,255,.16);
+  }
+
+  /* ---------------- SHARED CARD / BADGE SYSTEM ---------------- */
+  section{ padding:56px 0; }
+  section.tight{ padding-top:0; }
+  .section-head{ margin-bottom:24px; }
+  .section-head .eyebrow{ color:var(--accent-deep); }
+  .section-head .eyebrow .dot{ background:var(--accent); }
+  .section-head h2{ font-size:1.7rem; margin:0 0 8px; color:var(--ink); }
+  .section-head p{ color:var(--ink-soft); margin:0; max-width:56ch; }
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:var(--radius-card);
+    box-shadow:var(--shadow);
+    padding:26px;
+  }
+  .card + .card{ margin-top:14px; }
+
+  .badge{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:.8rem; font-weight:600;
+    padding:6px 12px;
+    border-radius:var(--radius-tag);
+    background:var(--tag-bg);
+    color:var(--accent-deep);
+  }
+  .badge.green{ background:#E4F7EF; color:#1E7A56; }
+  .badge.violet{ background:#EFEAF9; color:#5B4EA6; }
+  .badge.pink{ background:#FBEAF2; color:#B14A80; }
+  .badge.status{ background:var(--night); color:#EDEBF5; }
+
+  /* ---------------- ABOUT ---------------- */
+  .about-grid{ display:grid; gap:14px; }
+  .about-story p{ margin:0 0 14px; color:var(--ink); }
+  .about-story p:last-child{ margin-bottom:0; }
+  .badge-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:18px; }
+
+  .offclock{
+    margin-top:14px;
+    padding:20px 22px;
+    background:linear-gradient(150deg, #12213B 0%, #241C3E 100%);
+    color:#E7E4F2;
+    border-radius:var(--radius-card);
+  }
+  .offclock strong{ font-family:"Fraunces",Georgia,serif; font-weight:600; color:var(--aurora-green); }
+  .offclock p{ margin:0; }
+
+  /* ---------------- WORK CASE STUDIES ---------------- */
+  .case{
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .case-top{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:12px; flex-wrap:wrap;
+  }
+  .case h3{ font-size:1.25rem; margin:0 0 4px; color:var(--ink); }
+  .case .role{ font-size:.88rem; color:var(--ink-soft); margin:0; }
+  .case a.visit{
+    font-size:.85rem; font-weight:600; text-decoration:none;
+    white-space:nowrap;
+    padding:8px 14px;
+    border-radius:var(--radius-tag);
+    background:var(--tag-bg);
+    color:var(--accent-deep);
+  }
+  .case a.visit:hover{ background:var(--accent); color:#fff; }
+  .case p.desc{ margin:0; color:var(--ink); }
+  .case .badge-row{ margin-top:2px; }
+  .case .attribution{
+    font-size:.78rem; color:var(--ink-soft); opacity:.85; margin:2px 0 0;
+  }
+
+  /* ---------------- CURRENTLY EXPLORING ---------------- */
+  .explore-grid{ display:grid; gap:14px; }
+  .explore-card h3{ font-size:1.15rem; margin:0 0 6px; color:var(--ink); }
+  .explore-card p{ margin:0 0 12px; color:var(--ink-soft); font-size:.95rem; }
+  .explore-card .badge-row{ margin-top:0; }
+
+  /* ---------------- CONTACT ---------------- */
+  .contact-card{
+    text-align:center;
+    background:linear-gradient(150deg, #0B1220 0%, #241C3E 100%);
+    color:#EDEBF5;
+    border-radius:var(--radius-card);
+    padding:40px 28px;
+  }
+  .contact-card h2{ color:#fff; margin:0 0 10px; font-size:1.6rem; }
+  .contact-card p{ color:#C9C6D9; margin:0 0 24px; max-width:44ch; margin-left:auto; margin-right:auto; }
+  .contact-links{ display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
+  .contact-links a{
+    text-decoration:none; font-weight:600; font-size:.9rem;
+    padding:10px 18px; border-radius:var(--radius-tag);
+    background:rgba(255,255,255,.1);
+    color:#fff;
+    border:1px solid rgba(255,255,255,.18);
+  }
+  .contact-links a:hover{ background:var(--accent); border-color:var(--accent); }
+  .contact-links a.primary{ background:var(--accent); border-color:var(--accent); }
+
+  footer{
+    text-align:center;
+    font-size:.78rem;
+    color:var(--ink-soft);
+    opacity:.85;
+    padding:22px 0 40px;
+  }
+
+  @media (max-width:480px){
+    .card{ padding:20px; }
+    :root{ font-size:16px; }
+    .case a.visit{ order:3; }
+  }
+</style>
 </head>
-
 <body>
 
-  <div class="aurora" aria-hidden="true">
-    <span class="blob blob-1"></span>
-    <span class="blob blob-2"></span>
-    <span class="blob blob-3"></span>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">Bianca Benson</a>
+    <input type="checkbox" id="nav-toggle">
+    <label class="nav-btn" for="nav-toggle" aria-label="Toggle navigation"></label>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#exploring">Currently</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
+</div>
 
-  <main id="story">
-    <section class="story-panel intro" data-background="#edc7a9" data-circle="#3e78ed" data-aurora="#a1fffe,#d3c7f3,#faffb8">
-      <div class="panel-content">
-        <span class="circle" aria-hidden="true"></span>
-        <h1 class="year">This corner of the internet is Bianca Benson's digital business card. She ...</h1>
-        <h2>is a digital creative based in The Netherlands</h2>
-        <p class="scroll-prompt year" aria-hidden="true">Scroll to explore</p>
+<header class="hero" id="top">
+  <div class="aurora" aria-hidden="true"><span class="a1"></span><span class="a2"></span><span class="a3"></span></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow"><span class="dot"></span>Digital creative & frontend developer</p>
+    <h1>Design taste, built with code.</h1>
+    <p class="lede">I'm Bianca — based in The Hague, working at the intersection of design and frontend development. I've spent my career learning how people actually experience things, then building interfaces that hold up to that.</p>
+    <div class="hero-badges">
+      <span class="badge">HTML / CSS / JS</span>
+      <span class="badge">CMS migrations</span>
+      <span class="badge">Interactive & kiosk UI</span>
+      <span class="badge">Accessibility-minded</span>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot"></span>About</p>
+        <h2>From reading a room to reading a codebase</h2>
+        <p>The short version of a longer story.</p>
       </div>
-    </section>
-
-    <section class="story-panel" data-background="#a1fffe" data-circle="#e34a47" data-aurora="#a1fffe,#e34a47,#ffe29a">
-      <div class="panel-content"><span class="circle" aria-hidden="true"></span><h2>developed frontend and digital creative projects for HEMA, Huislijn and Philips</h2></div>
-    </section>
-    <section class="story-panel" data-background="#d3c7f3" data-circle="#f7fe00" data-aurora="#d3c7f3,#f7fe00,#a1fffe">
-      <div class="panel-content"><span class="circle" aria-hidden="true"></span><h2>explores AI and digital tools to simplify everyday processes</h2></div>
-    </section>
-    <section class="story-panel" data-background="#faffb8" data-circle="#b472e6" data-aurora="#faffb8,#b472e6,#ffcce1">
-      <div class="panel-content"><span class="circle" aria-hidden="true"></span><h2>balances project management with the mindfulness of yoga</h2></div>
-    </section>
-    <section class="story-panel" data-background="#a1fffe" data-circle="#f7fe00" data-aurora="#a1fffe,#f7fe00,#d3c7f3">
-      <div class="panel-content"><span class="circle" aria-hidden="true"></span><h2>embraces remote work and creative online solutions</h2></div>
-    </section>
-    <section class="story-panel" data-background="#ffcce1" data-circle="#089999" data-aurora="#ffcce1,#089999,#faffb8">
-      <div class="panel-content"><span class="circle" aria-hidden="true"></span><h2>blends graphic design with web development skills</h2></div>
-    </section>
-    <section class="story-panel" data-background="#ecf570" data-circle="#e68e72" data-aurora="#ecf570,#e68e72,#a1fffe">
-      <div class="panel-content"><span class="circle" aria-hidden="true"></span><h2>designs intuitive websites and fosters teamwork online</h2></div>
-    </section>
-    <section class="story-panel final" data-background="#a1fffe" data-circle="#f7fe00" data-aurora="#a1fffe,#f7fe00,#faffb8">
-      <div class="panel-content">
-        <span class="circle" aria-hidden="true"></span>
-        <h2>finds joy outdoors, cooking from scratch, rediscovering coffee and exploring cultures</h2>
-        <div class="contact">
-          <p class="contact-label year">Stay in touch</p>
-          <div class="contact-links">
-            <a class="contact-link" href="mailto:biancabenson@gmail.com">Email <span aria-hidden="true">↗</span></a>
-            <a class="contact-link" href="https://linkedin.com/in/bianca-spoelstra-benson-17a4208" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
-            <a class="contact-link" href="https://github.com/biancabensondesign" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+      <div class="about-grid">
+        <div class="card about-story">
+          <p>I trained in graphic design and web development at KABK, but some of what shaped my eye for good UX didn't happen at a desk. As a museum guide at Voorlinden and the Clingenbosch Sculpture Garden, and in gallery sales at Carré d'Artistes, my job was to read what held someone's attention and what lost it — in real time, with no undo button.</p>
+          <p>That instinct carried straight into frontend work: CMS migrations, continuous iteration on live sites, interactive kiosk experiences. The medium changed from a room to a screen, but the question stayed the same — does this actually work for the person in front of it?</p>
+          <div class="badge-row">
+            <span class="badge">Frontend development</span>
+            <span class="badge">Creative direction</span>
+            <span class="badge">CMS-based systems</span>
+            <span class="badge">Team collaboration</span>
+            <span class="badge">Graphic design</span>
+            <span class="badge">AI forward</span>
+            <span class="badge">Productivity software</span>
+            <span class="badge">Project management software</span>
           </div>
         </div>
+
+        <div class="offclock">
+          <p><strong>Off the clock:</strong> yoga, cooking from scratch, and a running fascination with the night sky — aurora chasing, JWST updates, and whatever's visible in a dark-sky window. I write about various topics on— and offline.</p>
+        </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot"></span>Work</p>
+        <h2>Selected projects</h2>
+        <p>Team-based work delivered while at HappyFlow — shared here to show the scope of what I contributed to, not as solely-authored code.</p>
+      </div>
 
-  <script src="js/pages.js?v=7"></script>
+      <div class="card case">
+        <div class="case-top">
+          <div>
+            <h3>HEMA — Insurance platform</h3>
+            <p class="role">Redesign, CMS migration & rebuild</p>
+          </div>
+          <a class="visit" href="https://verzekeringen.hema.nl/" target="_blank" rel="noopener">Visit site ↗</a>
+        </div>
+        <p class="desc">Part of the team responsible for redesigning, updating and migrating HEMA's insurance site onto a CMS-based system — moving a live, customer-facing platform onto new foundations without losing what already worked.</p>
+        <div class="badge-row">
+          <span class="badge green">CMS migration</span>
+          <span class="badge">Team project</span>
+          <span class="badge">Frontend rebuild</span>
+        </div>
+        <p class="attribution">Delivered via HappyFlow, on a team basis.</p>
+      </div>
+
+      <div class="card case">
+        <div class="case-top">
+          <div>
+            <h3>Huislijn</h3>
+            <p class="role">Ongoing frontend development & paid media</p>
+          </div>
+          <a class="visit" href="https://www.huislijn.nl/" target="_blank" rel="noopener">Visit site ↗</a>
+        </div>
+        <p class="desc">Continuous updates and frontend changes on a long-running basis, including implementing paid advertising elements — the kind of work that's less one big launch and more staying responsive to what a live site needs, week over week.</p>
+        <div class="badge-row">
+          <span class="badge violet">Continuous delivery</span>
+          <span class="badge">Paid ads integration</span>
+          <span class="badge">Frontend maintenance</span>
+        </div>
+        <p class="attribution">Delivered via HappyFlow, on a team basis.</p>
+      </div>
+
+      <div class="card case">
+        <div class="case-top">
+          <div>
+            <h3>Philips — Customer Experience Center</h3>
+            <p class="role">Interactive screen development</p>
+          </div>
+          <a class="visit" href="https://www.philips.nl/a-w/about/news/archive/standard/about/news/articles/2019/20190516-philips-demonstreert-visie-op-zorg-in-nieuw-customer-experience-center.html" target="_blank" rel="noopener">Read about it ↗</a>
+        </div>
+        <p class="desc">Developed interactive screens for Philips' physical customer experience centre — frontend work built for a walk-up, touch-first audience rather than a browser tab, where the interface has seconds to make sense.</p>
+        <div class="badge-row">
+          <span class="badge pink">Interactive kiosk UI</span>
+          <span class="badge">Touch interfaces</span>
+          <span class="badge">Team project</span>
+        </div>
+        <p class="attribution">Delivered via HappyFlow, on a team basis.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="exploring">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow"><span class="dot"></span>Currently</p>
+        <h2>What I'm building now</h2>
+        <p>Self-directed projects, at various stages.</p>
+      </div>
+
+      <div class="explore-grid">
+        <div class="card explore-card">
+          <div class="badge-row" style="margin-bottom:10px;">
+            <span class="badge status">In development</span>
+          </div>
+          <h3>Slow Studio</h3>
+          <p>A digital product line growing out of my Substack - starting with a Notion template for freelancers and creatives, built around managing energy rather than managing time. Once this project is more concrete I will share more.</p>
+        </div>
+
+        <div class="card explore-card">
+          <div class="badge-row" style="margin-bottom:10px;">
+            <span class="badge status">Research phase</span>
+          </div>
+          <h3>Health Explainer Builder</h3>
+          <p>An early-stage tool concept focused on making health communication clearer. Currently in UX research and discovery, talking to people about what the problem actually is before building anything.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="tight">
+    <div class="wrap">
+      <div class="contact-card">
+        <h2>Let's talk</h2>
+        <p>Open to hearing about frontend, design, or CMS-based projects — reach out however's easiest.</p>
+        <div class="contact-links">
+          <a class="primary" href="mailto:biancabenson@gmail.com">Email ↗</a>
+          <a href="https://linkedin.com/in/bianca-spoelstra-benson-17a4208" target="_blank" rel="noopener">LinkedIn ↗</a>
+          <a href="https://github.com/biancabensondesign" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>Bianca Benson · The Hague, Netherlands · 2026</footer>
+
 </body>
-
 </html>
