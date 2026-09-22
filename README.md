@@ -32,8 +32,6 @@ The implementation reflects a design-led practice supported by full-stack web de
 
 ```text
 ├── index.html            # Homepage / portfolio
-├── extra-info.html        # Additional info page (Dutch)
-├── extra-info-en.html     # Additional info page (English)
 ├── 404.html               # Fallback page
 ├── favicon.ico / favicon.png / icon.png
 ├── site.webmanifest
