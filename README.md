@@ -33,7 +33,7 @@ The implementation reflects a design-led practice supported by full-stack web de
 ```text
 ├── index.html            # Homepage / portfolio
 ├── 404.html               # Fallback page
-├── favicon.ico / favicon.png / icon.png
+├── favicon.ico / favicon.png / icon.png / apple-touch-icon.png
 ├── site.webmanifest
 └── robots.txt
 ```
